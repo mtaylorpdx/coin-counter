@@ -14,7 +14,7 @@ namespace CoinCombos.Methods
       int[] coinAmounts = {25, 10, 5};
       for(int i = 0; i <3; i++)
       {
-        while (Change[3] > coinAmounts[i])
+        while (Change[3] >= coinAmounts[i])
         {
           Change[3] -= coinAmounts[i];
           Change[i]++;
