@@ -1,20 +1,22 @@
 using System;
-using CoinCombos.Methods;
+using CoinCombos.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CoinCombos
 {
   public class Program
   {
-    public static void Main()
+        public static void Main(string[] args)
     {
-      Console.Write("How much cash you got?!  ");
-      int changeAmount = (int)(float.Parse(Console.ReadLine()) * 100);
-      Combos newCombo = new Combos(changeAmount);
-      newCombo.MakeChange();
-      Console.WriteLine("Quarters: " + newCombo.Change[0]);
-      Console.WriteLine("Dimes: " + newCombo.Change[1]);
-      Console.WriteLine("Nickles: " + newCombo.Change[2]);
-      Console.WriteLine("Pennies: " + newCombo.Change[3]);
-    } 
+      var host = new WebHostBuilder()
+        .UseKestrel()
+        .UseContentRoot(Directory.GetCurrentDirectory())
+        .UseIISIntegration()
+        .UseStartup<Startup>()
+        .Build();
+
+      host.Run();
+    }
   }
 }
